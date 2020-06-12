@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CardBody extends StatelessWidget {
-  const CardBody({
-    Key key,
-  }) : super(key: key);
+  final int left;
+  final int center;
+  final int right;
+  CardBody({this.left, this.center, this.right});
 
   @override
   Widget build(BuildContext context) {
@@ -13,23 +14,45 @@ class CardBody extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Container(
-                color: Colors.blue.withOpacity(0.1),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: List.filled(
+                  this.left,
+                  Text(
+                    '\u2660',
+                    style: TextStyle(
+                      fontSize: 52.0,
+                    ),
+                  ),
+                ),
               ),
             ),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text('\u2660'),
-                  Text('\u2660'),
-//                  Text('\u2660'),
-                ],
+                children: List.filled(
+                  this.center,
+                  Text(
+                    '\u2660',
+                    style: TextStyle(
+                      fontSize: 52.0,
+                    ),
+                  ),
+                ),
               ),
             ),
             Expanded(
-              child: Container(
-                color: Colors.green.withOpacity(0.1),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: List.filled(
+                  this.right,
+                  Text(
+                    '\u2660',
+                    style: TextStyle(
+                      fontSize: 52.0,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

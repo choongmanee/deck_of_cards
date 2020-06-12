@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'cardBody.dart';
 import 'cardCorner.dart';
 
-class CartTemplate extends StatelessWidget {
-  const CartTemplate({
+class CardTemplate extends StatelessWidget {
+  const CardTemplate({
     Key key,
   }) : super(key: key);
 
@@ -16,7 +16,11 @@ class CartTemplate extends StatelessWidget {
       child: Row(
         children: [
           CardCorner(),
-          CardBody(),
+          CardBody(
+            left: 0,
+            center: 1,
+            right: 0,
+          ),
           Transform.rotate(
             angle: math.pi / 1.0,
             child: CardCorner(),

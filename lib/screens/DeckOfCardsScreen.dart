@@ -30,7 +30,7 @@ class DeckOfCardsScreen extends StatelessWidget {
             onTap: () => {
               print(math.Random().nextInt(14).toRadixString(16).toUpperCase()),
             },
-            child: CartTemplate(),
+            child: CardTemplate(),
           ),
         ),
       ),

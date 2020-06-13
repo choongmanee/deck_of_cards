@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 
+enum location { top, bottom }
+
 class CardCorner extends StatelessWidget {
-  const CardCorner({
-    Key key,
-  }) : super(key: key);
+  final String rank;
+  final String suite;
+  final bool isBottom;
+
+  CardCorner({this.rank, this.suite, this.isBottom});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget corner = Container(
       width: 48.0,
       padding: EdgeInsets.only(top: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'A',
+            this.rank,
             style: TextStyle(
               fontSize: 24.0,
             ),
           ),
           Text(
-            '\u2660',
+            this.suite,
             style: TextStyle(
               fontSize: 28.0,
             ),
@@ -28,5 +32,14 @@ class CardCorner extends StatelessWidget {
         ],
       ),
     );
+
+    if (this.isBottom) {
+      corner = RotatedBox(
+        quarterTurns: 2,
+        child: corner,
+      );
+    }
+
+    return corner;
   }
 }

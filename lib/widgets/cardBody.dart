@@ -17,19 +17,14 @@ class CardBody extends StatelessWidget {
         Widget suite;
         int half = (count / 2).ceil();
 
-        if (count == 1) {
+        if (count == 1 || half > index) {
           suite = Text(
             this.suite,
             style: TextStyle(
-              fontSize: 52.0,
-            ),
-          );
-        } else if (half > index) {
-          suite = Text(
-            this.suite,
-            style: TextStyle(
-              fontSize: 52.0,
-            ),
+                fontSize: 52.0,
+                color: this.suite == '\u2666' || this.suite == '\u2665'
+                    ? Colors.red
+                    : Colors.black),
           );
         } else {
           suite = RotatedBox(
@@ -37,8 +32,10 @@ class CardBody extends StatelessWidget {
             child: Text(
               this.suite,
               style: TextStyle(
-                fontSize: 52.0,
-              ),
+                  fontSize: 52.0,
+                  color: this.suite == '\u2666' || this.suite == '\u2665'
+                      ? Colors.red
+                      : Colors.black),
             ),
           );
         }

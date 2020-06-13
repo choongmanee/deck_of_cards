@@ -20,14 +20,18 @@ class CardCorner extends StatelessWidget {
           Text(
             this.rank,
             style: TextStyle(
-              fontSize: 24.0,
-            ),
+                fontSize: 24.0,
+                color: this.suite == '\u2666' || this.suite == '\u2665'
+                    ? Colors.red
+                    : Colors.black),
           ),
           Text(
             this.suite,
             style: TextStyle(
-              fontSize: 28.0,
-            ),
+                fontSize: 28.0,
+                color: this.suite == '\u2666' || this.suite == '\u2665'
+                    ? Colors.red
+                    : Colors.black),
           ),
         ],
       ),

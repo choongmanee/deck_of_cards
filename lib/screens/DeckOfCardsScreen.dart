@@ -20,7 +20,7 @@ class DeckOfCardsScreen extends StatelessWidget {
 //    'K': [7, 7, 7],
   };
 
-  final suites = ['\u2660', '\u2663', '\u2665', '\u2666'];
+  final suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,7 @@ class DeckOfCardsScreen extends StatelessWidget {
               int right = ranks[rank][2];
 
               return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: List.generate(
                   suites.length,
                   (suite) => PlayingCard(

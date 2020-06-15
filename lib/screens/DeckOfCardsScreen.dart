@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:deckofcards/widgets/cardBody.dart';
 import 'package:deckofcards/widgets/cardDetails.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,9 @@ class DeckOfCardsScreen extends StatelessWidget {
     '8': [3, 2, 3],
     '9': [4, 1, 4],
     '10': [4, 2, 4],
-//    'J': [5, 5, 5],
-//    'Q': [6, 6, 6],
-//    'K': [7, 7, 7],
+    'J': [5, 5, 5],
+    'Q': [6, 6, 6],
+    'K': [7, 7, 7],
   };
 
   final suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
@@ -42,9 +43,13 @@ class DeckOfCardsScreen extends StatelessWidget {
                   (suite) => PlayingCard(
                     suite: suites[suite],
                     rank: rank,
-                    left: left,
-                    center: center,
-                    right: right,
+                    body: CardBody(
+                      left: left,
+                      center: center,
+                      right: right,
+                      centerGap: (rank == '7' || rank == '9'),
+                      suite: suites[suite],
+                    ),
                   ),
                 ),
               );
@@ -59,11 +64,13 @@ class DeckOfCardsScreen extends StatelessWidget {
 class PlayingCard extends StatelessWidget {
   final suite;
   final rank;
-  final left;
-  final center;
-  final right;
+  final body;
 
-  PlayingCard({this.suite, this.rank, this.left, this.center, this.right});
+  PlayingCard({
+    this.suite,
+    this.rank,
+    this.body,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +81,9 @@ class PlayingCard extends StatelessWidget {
           print(math.Random().nextInt(14).toRadixString(16).toUpperCase()),
         },
         child: CardDetails(
-          suite: this.suite,
+          body: this.body,
           rank: this.rank,
-          left: this.left,
-          center: this.center,
-          right: this.right,
+          suite: this.suite,
         ),
       ),
     );

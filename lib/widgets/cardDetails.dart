@@ -6,11 +6,9 @@ import 'cardBody.dart';
 class CardDetails extends StatelessWidget {
   final String suite;
   final String rank;
-  final int left;
-  final int center;
-  final int right;
+  final CardBody body;
 
-  CardDetails({this.suite, this.rank, this.left, this.center, this.right});
+  CardDetails({this.suite, this.rank, this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +20,7 @@ class CardDetails extends StatelessWidget {
             suite: this.suite,
             isBottom: false,
           ),
-          CardBody(
-            left: this.left,
-            center: this.center,
-            right: this.right,
-            suite: this.suite,
-          ),
+          this.body,
           CardCorner(
             rank: this.rank,
             suite: this.suite,

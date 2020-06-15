@@ -7,37 +7,50 @@ class CardBody extends StatelessWidget {
   final int center;
   final int right;
   final String suite;
+  final bool centerGap;
 
-  CardBody({this.left, this.center, this.right, this.suite});
+  CardBody({
+    this.left,
+    this.center,
+    this.right,
+    this.suite,
+    this.centerGap,
+  });
 
-  List<Widget> suites(int count) {
+  bool isFaceCard() => (this.left + this.center + this.right) > 10;
+
+  List<Widget> suites(int count, bool centerGap) {
     return List.generate(
-      count,
+      centerGap ? count + 1 : count,
       (int index) {
         Widget suite;
         int half = (count / 2).ceil();
 
-        if (count == 1 || half > index) {
-          suite = Text(
-            this.suite,
-            style: TextStyle(
-                fontSize: 52.0,
-                color: this.suite == '\u2666' || this.suite == '\u2665'
-                    ? Colors.red
-                    : Colors.black),
-          );
+        if (centerGap && index == count) {
+          suite = Container();
         } else {
-          suite = RotatedBox(
-            quarterTurns: 2,
-            child: Text(
+          if (count == 1 || half > index) {
+            suite = Text(
               this.suite,
               style: TextStyle(
                   fontSize: 52.0,
                   color: this.suite == '\u2666' || this.suite == '\u2665'
                       ? Colors.red
                       : Colors.black),
-            ),
-          );
+            );
+          } else {
+            suite = RotatedBox(
+              quarterTurns: 2,
+              child: Text(
+                this.suite,
+                style: TextStyle(
+                    fontSize: 52.0,
+                    color: this.suite == '\u2666' || this.suite == '\u2665'
+                        ? Colors.red
+                        : Colors.black),
+              ),
+            );
+          }
         }
 
         return suite;
@@ -48,28 +61,32 @@ class CardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: suites(this.left),
+      child: isFaceCard()
+          ? Center(
+              child: Text('TODO'),
+            )
+          : Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: suites(this.left, false),
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: suites(this.center, this.centerGap),
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: suites(this.right, false),
+                  ),
+                ),
+              ],
             ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: suites(this.center),
-            ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: suites(this.right),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

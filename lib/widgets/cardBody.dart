@@ -1,6 +1,7 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CardBody extends StatelessWidget {
   final int left;
@@ -8,6 +9,7 @@ class CardBody extends StatelessWidget {
   final int right;
   final String suite;
   final bool centerGap;
+  final String rank;
 
   CardBody({
     this.left,
@@ -15,6 +17,7 @@ class CardBody extends StatelessWidget {
     this.right,
     this.suite,
     this.centerGap,
+    this.rank,
   });
 
   bool isFaceCard() => (this.left + this.center + this.right) > 10;
@@ -63,7 +66,71 @@ class CardBody extends StatelessWidget {
     return Expanded(
       child: isFaceCard()
           ? Center(
-              child: Text('TODO'),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        this.suite,
+                        style: TextStyle(
+                          fontSize: 48.0,
+                          color:
+                              this.suite == '\u2666' || this.suite == '\u2665'
+                                  ? Colors.red
+                                  : Colors.black,
+                        ),
+                      ),
+                      Text(
+                        this.rank,
+                        style: GoogleFonts.robotoSlab(
+                          fontSize: 96.0,
+                          color:
+                              this.suite == '\u2666' || this.suite == '\u2665'
+                                  ? Colors.red
+                                  : Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Divider(
+                    color: this.suite == '\u2666' || this.suite == '\u2665'
+                        ? Colors.red
+                        : Colors.black,
+                  ),
+                  RotatedBox(
+                    quarterTurns: 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          this.suite,
+                          style: TextStyle(
+                            fontSize: 48.0,
+                            color:
+                                this.suite == '\u2666' || this.suite == '\u2665'
+                                    ? Colors.red
+                                    : Colors.black,
+                          ),
+                        ),
+                        Text(
+                          this.rank,
+                          style: GoogleFonts.robotoSlab(
+                            fontSize: 96.0,
+                            color:
+                                this.suite == '\u2666' || this.suite == '\u2665'
+                                    ? Colors.red
+                                    : Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             )
           : Row(
               children: [

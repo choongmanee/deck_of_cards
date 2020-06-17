@@ -21,39 +21,46 @@ class DeckOfCardsScreen extends StatelessWidget {
 
   final suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
+  List<Row> listCards() {
+    return List.generate(
+      ranks.keys.toList().length,
+      (rIndex) {
+        String rank = ranks.keys.toList()[rIndex];
+        int left = ranks[rank][0];
+        int center = ranks[rank][1];
+        int right = ranks[rank][2];
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: List.generate(
+            suites.length,
+            (suite) => PlayingCard(
+              suite: suites[suite],
+              rank: rank,
+              body: CardBody(
+                left: left,
+                center: center,
+                right: right,
+                centerGap: (rank == '7' || rank == '9'),
+                suite: suites[suite],
+                rank: rank,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: ListView(
-          children: List.generate(
-            ranks.keys.toList().length,
-            (rIndex) {
-              String rank = ranks.keys.toList()[rIndex];
-              int left = ranks[rank][0];
-              int center = ranks[rank][1];
-              int right = ranks[rank][2];
-
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: List.generate(
-                  suites.length,
-                  (suite) => PlayingCard(
-                    suite: suites[suite],
-                    rank: rank,
-                    body: CardBody(
-                      left: left,
-                      center: center,
-                      right: right,
-                      centerGap: (rank == '7' || rank == '9'),
-                      suite: suites[suite],
-                      rank: rank,
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
+          children: [
+            Text('Deck of Cards'),
+            ...listCards(),
+          ],
         ),
       ),
     );

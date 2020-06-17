@@ -21,7 +21,7 @@ class DeckOfCardsScreen extends StatelessWidget {
 
   final suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
-  List<Row> listCards() {
+  List<Widget> listCards() {
     return List.generate(
       ranks.keys.toList().length,
       (rIndex) {
@@ -31,7 +31,7 @@ class DeckOfCardsScreen extends StatelessWidget {
         int right = ranks[rank][2];
 
         return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(
             suites.length,
             (suite) => PlayingCard(
@@ -56,11 +56,14 @@ class DeckOfCardsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ListView(
-          children: [
-            Text('Deck of Cards'),
-            ...listCards(),
-          ],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Container(
+            width: 992.0,
+            child: ListView(
+              children: listCards(),
+            ),
+          ),
         ),
       ),
     );

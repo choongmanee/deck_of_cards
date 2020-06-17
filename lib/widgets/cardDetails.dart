@@ -28,8 +28,8 @@ class CardDetails extends StatelessWidget {
           ),
         ],
       ),
-      width: 250.0,
-      height: 350.0,
+      width: 200.0,
+      height: 280.0,
     );
   }
 }

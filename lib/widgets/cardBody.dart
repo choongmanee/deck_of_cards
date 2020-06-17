@@ -36,7 +36,7 @@ class CardBody extends StatelessWidget {
             suite = Text(
               this.suite,
               style: TextStyle(
-                  fontSize: 52.0,
+                  fontSize: 36.0,
                   color: this.suite == '\u2666' || this.suite == '\u2665'
                       ? Colors.red
                       : Colors.black),
@@ -47,7 +47,7 @@ class CardBody extends StatelessWidget {
               child: Text(
                 this.suite,
                 style: TextStyle(
-                    fontSize: 52.0,
+                    fontSize: 36.0,
                     color: this.suite == '\u2666' || this.suite == '\u2665'
                         ? Colors.red
                         : Colors.black),
@@ -76,7 +76,7 @@ class CardBody extends StatelessWidget {
                       Text(
                         this.suite,
                         style: TextStyle(
-                          fontSize: 48.0,
+                          fontSize: 36.0,
                           color:
                               this.suite == '\u2666' || this.suite == '\u2665'
                                   ? Colors.red
@@ -86,7 +86,7 @@ class CardBody extends StatelessWidget {
                       Text(
                         this.rank,
                         style: GoogleFonts.robotoSlab(
-                          fontSize: 96.0,
+                          fontSize: 72.0,
                           color:
                               this.suite == '\u2666' || this.suite == '\u2665'
                                   ? Colors.red
@@ -109,7 +109,7 @@ class CardBody extends StatelessWidget {
                         Text(
                           this.suite,
                           style: TextStyle(
-                            fontSize: 48.0,
+                            fontSize: 36.0,
                             color:
                                 this.suite == '\u2666' || this.suite == '\u2665'
                                     ? Colors.red
@@ -119,7 +119,7 @@ class CardBody extends StatelessWidget {
                         Text(
                           this.rank,
                           style: GoogleFonts.robotoSlab(
-                            fontSize: 96.0,
+                            fontSize: 72.0,
                             color:
                                 this.suite == '\u2666' || this.suite == '\u2665'
                                     ? Colors.red

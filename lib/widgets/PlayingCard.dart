@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import 'cardDetails.dart';
@@ -8,6 +6,7 @@ class PlayingCard extends StatelessWidget {
   final suite;
   final rank;
   final body;
+  final bool up = false;
 
   PlayingCard({
     this.suite,
@@ -20,9 +19,7 @@ class PlayingCard extends StatelessWidget {
     return Card(
       child: InkWell(
         splashColor: Colors.black87.withAlpha(30),
-        onTap: () => {
-          print(math.Random().nextInt(14).toRadixString(16).toUpperCase()),
-        },
+        onTap: () => {print('flip card')},
         child: CardDetails(
           body: this.body,
           rank: this.rank,

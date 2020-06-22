@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'cardDetails.dart';
 
 class PlayingCard extends StatelessWidget {
-  final suite;
+  final suit;
   final rank;
   final body;
   final bool up = false;
 
   PlayingCard({
-    this.suite,
+    this.suit,
     this.rank,
     this.body,
   });
@@ -23,7 +23,7 @@ class PlayingCard extends StatelessWidget {
         child: CardDetails(
           body: this.body,
           rank: this.rank,
-          suite: this.suite,
+          suit: this.suit,
         ),
       ),
     );

@@ -4,51 +4,49 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CardBody extends StatelessWidget {
-  final int left;
+  final int sides;
   final int center;
-  final int right;
-  final String suite;
+  final String suit;
   final bool centerGap;
   final String rank;
 
   CardBody({
-    this.left,
+    this.sides,
     this.center,
-    this.right,
-    this.suite,
+    this.suit,
     this.centerGap,
     this.rank,
   });
 
-  bool isFaceCard() => (this.left + this.center + this.right) > 10;
+  bool isFaceCard() => (this.sides + this.center) > 10;
 
   List<Widget> suites(int count, bool centerGap) {
     return List.generate(
       centerGap ? count + 1 : count,
       (int index) {
-        Widget suite;
+        Widget suit;
         int half = (count / 2).ceil();
 
         if (centerGap && index == count) {
-          suite = Container();
+          suit = Container();
         } else {
           if (count == 1 || half > index) {
-            suite = Text(
-              this.suite,
+            suit = Text(
+              this.suit,
               style: TextStyle(
                   fontSize: 36.0,
-                  color: this.suite == '\u2666' || this.suite == '\u2665'
+                  color: this.suit == '\u2666' || this.suit == '\u2665'
                       ? Colors.red
                       : Colors.black),
             );
           } else {
-            suite = RotatedBox(
+            suit = RotatedBox(
               quarterTurns: 2,
               child: Text(
-                this.suite,
+                this.suit,
                 style: TextStyle(
                     fontSize: 36.0,
-                    color: this.suite == '\u2666' || this.suite == '\u2665'
+                    color: this.suit == '\u2666' || this.suit == '\u2665'
                         ? Colors.red
                         : Colors.black),
               ),
@@ -56,7 +54,7 @@ class CardBody extends StatelessWidget {
           }
         }
 
-        return suite;
+        return suit;
       },
     );
   }
@@ -74,29 +72,27 @@ class CardBody extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        this.suite,
+                        this.suit,
                         style: TextStyle(
                           fontSize: 36.0,
-                          color:
-                              this.suite == '\u2666' || this.suite == '\u2665'
-                                  ? Colors.red
-                                  : Colors.black,
+                          color: this.suit == '\u2666' || this.suit == '\u2665'
+                              ? Colors.red
+                              : Colors.black,
                         ),
                       ),
                       Text(
                         this.rank,
                         style: GoogleFonts.robotoSlab(
                           fontSize: 72.0,
-                          color:
-                              this.suite == '\u2666' || this.suite == '\u2665'
-                                  ? Colors.red
-                                  : Colors.black,
+                          color: this.suit == '\u2666' || this.suit == '\u2665'
+                              ? Colors.red
+                              : Colors.black,
                         ),
                       ),
                     ],
                   ),
                   Divider(
-                    color: this.suite == '\u2666' || this.suite == '\u2665'
+                    color: this.suit == '\u2666' || this.suit == '\u2665'
                         ? Colors.red
                         : Colors.black,
                   ),
@@ -107,11 +103,11 @@ class CardBody extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          this.suite,
+                          this.suit,
                           style: TextStyle(
                             fontSize: 36.0,
                             color:
-                                this.suite == '\u2666' || this.suite == '\u2665'
+                                this.suit == '\u2666' || this.suit == '\u2665'
                                     ? Colors.red
                                     : Colors.black,
                           ),
@@ -121,7 +117,7 @@ class CardBody extends StatelessWidget {
                           style: GoogleFonts.robotoSlab(
                             fontSize: 72.0,
                             color:
-                                this.suite == '\u2666' || this.suite == '\u2665'
+                                this.suit == '\u2666' || this.suit == '\u2665'
                                     ? Colors.red
                                     : Colors.black,
                           ),
@@ -137,7 +133,7 @@ class CardBody extends StatelessWidget {
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: suites(this.left, false),
+                    children: suites(this.sides, false),
                   ),
                 ),
                 Expanded(
@@ -149,7 +145,7 @@ class CardBody extends StatelessWidget {
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: suites(this.right, false),
+                    children: suites(this.sides, false),
                   ),
                 ),
               ],

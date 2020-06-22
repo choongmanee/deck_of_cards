@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'cardBody.dart';
 
 class CardDetails extends StatelessWidget {
-  final String suite;
+  final String suit;
   final String rank;
   final CardBody body;
 
-  CardDetails({this.suite, this.rank, this.body});
+  CardDetails({this.suit, this.rank, this.body});
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +17,17 @@ class CardDetails extends StatelessWidget {
         children: [
           CardCorner(
             rank: this.rank,
-            suite: this.suite,
+            suit: this.suit,
             isBottom: false,
           ),
           this.body,
           CardCorner(
             rank: this.rank,
-            suite: this.suite,
+            suit: this.suit,
             isBottom: true,
           ),
         ],
       ),
-      width: 200.0,
-      height: 280.0,
     );
   }
 }

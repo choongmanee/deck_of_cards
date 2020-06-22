@@ -14,9 +14,9 @@ class DeckModel extends ChangeNotifier {
     '8': [3, 2],
     '9': [4, 1],
     '10': [4, 2],
-    'J': [5, 5],
-    'Q': [6, 6],
-    'K': [7, 7],
+    'J': [5, 6],
+    'Q': [5, 7],
+    'K': [5, 8],
   };
 
   final List<String> _suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
@@ -26,7 +26,11 @@ class DeckModel extends ChangeNotifier {
   create() {
     _ranks.forEach((rank, body) {
       _suites.forEach((suit) {
-        _cards.add({rank, suit, body});
+        _cards.add({
+          'rank': rank,
+          'suit': suit,
+          'body': body,
+        });
       });
     });
 

@@ -38,7 +38,7 @@ class DeckModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  flip() {
+  draw() {
     if (_cards.length > 0) {
       var removed = _cards.removeAt(0); // TODO: make a class for a card
       _discarded.add(removed);

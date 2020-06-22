@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 
 class DeckModel extends ChangeNotifier {
-  final _deck = [];
+  final _cards = [];
+  final _discarded = [];
   final Map<String, List<int>> _ranks = {
     'A': [0, 1],
     '2': [0, 2],
@@ -20,12 +21,12 @@ class DeckModel extends ChangeNotifier {
 
   final List<String> _suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
-  get deck => _deck;
+  get cards => _cards;
 
   create() {
     _ranks.forEach((rank, body) {
       _suites.forEach((suit) {
-        _deck.add({rank, suit, body});
+        _cards.add({rank, suit, body});
       });
     });
 
@@ -33,6 +34,16 @@ class DeckModel extends ChangeNotifier {
   }
 
   shuffle() {
+    _cards.shuffle();
+    notifyListeners();
+  }
+
+  flip() {
+    if (_cards.length > 0) {
+      var removed = _cards.removeAt(0); // TODO: make a class for a card
+      _discarded.add(removed);
+    }
+
     notifyListeners();
   }
 

@@ -28,53 +28,55 @@ class DeckOfCardsScreen extends StatelessWidget {
     var deck = Provider.of<DeckModel>(context);
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            FlatButton.icon(
-              onPressed: () => deck.shuffle(),
-              icon: Icon(Icons.shuffle),
-              label: Text('shuffle'),
-            ),
-            Center(
-              child: deck.cards.length > 0
-                  ? ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: deck.cards.length,
-                      itemBuilder: (context, index) {
-                        String suit = deck.cards[index]['suit'];
-                        String rank = deck.cards[index]['rank'];
-                        int sides = deck.cards[index]['body'].first;
-                        int center = deck.cards[index]['body'].last;
+      body: Scrollbar(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              FlatButton.icon(
+                onPressed: () => deck.shuffle(),
+                icon: Icon(Icons.shuffle),
+                label: Text('shuffle'),
+              ),
+              Center(
+                child: deck.cards.length > 0
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: deck.cards.length,
+                        itemBuilder: (context, index) {
+                          String suit = deck.cards[index]['suit'];
+                          String rank = deck.cards[index]['rank'];
+                          int sides = deck.cards[index]['body'].first;
+                          int center = deck.cards[index]['body'].last;
 
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            LimitedBox(
-                              maxHeight: 280.0,
-                              maxWidth: 200.0,
-                              child: PlayingCard(
-                                suit: deck.cards[index]['suit'],
-                                rank: deck.cards[index]['rank'],
-                                body: CardBody(
-                                  center: center,
-                                  centerGap: ['7', '9'].contains(rank),
-                                  rank: rank,
-                                  suit: suit,
-                                  sides: sides,
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              LimitedBox(
+                                maxHeight: 280.0,
+                                maxWidth: 200.0,
+                                child: PlayingCard(
+                                  suit: deck.cards[index]['suit'],
+                                  rank: deck.cards[index]['rank'],
+                                  body: CardBody(
+                                    center: center,
+                                    centerGap: ['7', '9'].contains(rank),
+                                    rank: rank,
+                                    suit: suit,
+                                    sides: sides,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        );
-                      },
-                    )
-                  : FlatButton(
-                      onPressed: () => deck.create(),
-                      child: Text('create'),
-                    ),
-            ),
-          ],
+                            ],
+                          );
+                        },
+                      )
+                    : FlatButton(
+                        onPressed: () => deck.create(),
+                        child: Text('create'),
+                      ),
+              ),
+            ],
+          ),
         ),
       ),
     );

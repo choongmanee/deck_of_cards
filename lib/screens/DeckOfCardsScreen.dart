@@ -55,20 +55,16 @@ class DeckOfCardsScreen extends StatelessWidget {
                               LimitedBox(
                                 maxHeight: 280.0,
                                 maxWidth: 200.0,
-                                child: Stack(
-                                  children: [
-                                    PlayingCard(
-                                      suit: deck.cards[index]['suit'],
-                                      rank: deck.cards[index]['rank'],
-                                      body: CardBody(
-                                        center: center,
-                                        centerGap: ['7', '9'].contains(rank),
-                                        rank: rank,
-                                        suit: suit,
-                                        sides: sides,
-                                      ),
-                                    ),
-                                  ],
+                                child: PlayingCard(
+                                  suit: deck.cards[index]['suit'],
+                                  rank: deck.cards[index]['rank'],
+                                  body: CardBody(
+                                    center: center,
+                                    centerGap: ['7', '9'].contains(rank),
+                                    rank: rank,
+                                    suit: suit,
+                                    sides: sides,
+                                  ),
                                 ),
                               ),
                             ],

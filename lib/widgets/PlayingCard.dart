@@ -16,16 +16,21 @@ class PlayingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        splashColor: Colors.black87.withAlpha(30),
-        onTap: () => {print('flip card')},
-        child: CardDetails(
-          body: this.body,
-          rank: this.rank,
-          suit: this.suit,
+    return Stack(
+      children: [
+        Container(),
+        Card(
+          child: InkWell(
+            splashColor: Colors.black87.withAlpha(30),
+            onTap: () => {print('flip card')},
+            child: CardDetails(
+              body: this.body,
+              rank: this.rank,
+              suit: this.suit,
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }

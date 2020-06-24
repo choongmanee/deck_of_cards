@@ -32,11 +32,12 @@ class DeckOfCardsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              FlatButton.icon(
-                onPressed: () => deck.shuffle(),
-                icon: Icon(Icons.shuffle),
-                label: Text('shuffle'),
-              ),
+              if (deck.cards.length > 0)
+                FlatButton.icon(
+                  onPressed: () => deck.shuffle(),
+                  icon: Icon(Icons.shuffle),
+                  label: Text('shuffle'),
+                ),
               Center(
                 child: deck.cards.length > 0
                     ? ListView.builder(
@@ -54,16 +55,20 @@ class DeckOfCardsScreen extends StatelessWidget {
                               LimitedBox(
                                 maxHeight: 280.0,
                                 maxWidth: 200.0,
-                                child: PlayingCard(
-                                  suit: deck.cards[index]['suit'],
-                                  rank: deck.cards[index]['rank'],
-                                  body: CardBody(
-                                    center: center,
-                                    centerGap: ['7', '9'].contains(rank),
-                                    rank: rank,
-                                    suit: suit,
-                                    sides: sides,
-                                  ),
+                                child: Stack(
+                                  children: [
+                                    PlayingCard(
+                                      suit: deck.cards[index]['suit'],
+                                      rank: deck.cards[index]['rank'],
+                                      body: CardBody(
+                                        center: center,
+                                        centerGap: ['7', '9'].contains(rank),
+                                        rank: rank,
+                                        suit: suit,
+                                        sides: sides,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

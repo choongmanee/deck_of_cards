@@ -51,7 +51,11 @@ class DeckModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  reset() {
+  undo() {
+    if (_discarded.length > 0) {
+      var removed = _discarded.removeAt(0);
+      _cards.insert(0, removed);
+    }
     notifyListeners();
   }
 }

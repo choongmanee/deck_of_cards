@@ -1,5 +1,6 @@
 import 'dart:core';
 
+import 'package:deckofcards/widgets/cardSuit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,28 +32,14 @@ class CardBody extends StatelessWidget {
           suit = Container();
         } else {
           if (count == 1 || half > index) {
-            suit = Text(
-              this.suit,
-              style: TextStyle(
-                fontSize: 36.0,
-                color: this.suit == '\u2666' || this.suit == '\u2665'
-                    ? Colors.red
-                    : Colors.black,
-              ),
-              textDirection: TextDirection.ltr,
+            suit = CardSuit(
+              suit: this.suit,
             );
           } else {
             suit = RotatedBox(
               quarterTurns: 2,
-              child: Text(
-                this.suit,
-                style: TextStyle(
-                  fontSize: 36.0,
-                  color: this.suit == '\u2666' || this.suit == '\u2665'
-                      ? Colors.red
-                      : Colors.black,
-                ),
-                textDirection: TextDirection.ltr,
+              child: CardSuit(
+                suit: this.suit,
               ),
             );
           }
@@ -74,15 +61,8 @@ class CardBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      this.suit,
-                      style: TextStyle(
-                        fontSize: 36.0,
-                        color: this.suit == '\u2666' || this.suit == '\u2665'
-                            ? Colors.red
-                            : Colors.black,
-                      ),
-                      textDirection: TextDirection.ltr,
+                    CardSuit(
+                      suit: this.suit,
                     ),
                     Text(
                       this.rank,
@@ -107,15 +87,8 @@ class CardBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        this.suit,
-                        style: TextStyle(
-                          fontSize: 36.0,
-                          color: this.suit == '\u2666' || this.suit == '\u2665'
-                              ? Colors.red
-                              : Colors.black,
-                        ),
-                        textDirection: TextDirection.ltr,
+                      CardSuit(
+                        suit: this.suit,
                       ),
                       Text(
                         this.rank,

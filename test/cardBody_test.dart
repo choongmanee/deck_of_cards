@@ -1,9 +1,11 @@
 import 'package:deckofcards/widgets/cardBody.dart';
+import 'package:deckofcards/widgets/cardSuit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CardBody widget', () {
-    testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    testWidgets('CardBody has the right number of suit marks',
+        (WidgetTester tester) async {
       // Build our app and trigger a frame.
       await tester.pumpWidget(CardBody(
         sides: 2,
@@ -13,7 +15,7 @@ void main() {
         rank: '5',
       ));
 
-//      expect(find.byType(Expanded), findsOneWidget);
+      expect(find.byType(CardSuit), findsNWidgets(5));
       expect(find.text('\u2660'), findsNWidgets(5));
     });
   });

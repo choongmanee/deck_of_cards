@@ -20,7 +20,9 @@ class CardDetails extends StatelessWidget {
             suit: this.suit,
             isBottom: false,
           ),
-          this.body,
+          Expanded(
+            child: this.body,
+          ),
           CardCorner(
             rank: this.rank,
             suit: this.suit,

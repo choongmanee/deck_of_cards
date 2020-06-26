@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:deckofcards/models/DeckModel.dart';
 import 'package:deckofcards/widgets/PlayingCard.dart';
 import 'package:deckofcards/widgets/cardBody.dart';
@@ -38,7 +40,7 @@ class DeckOfCardsScreen extends StatelessWidget {
                   deck.transform(v);
                 },
                 min: 0.0,
-                max: 180.0,
+                max: pi,
               ),
               if (deck.cards.length > 0)
                 FlatButton.icon(

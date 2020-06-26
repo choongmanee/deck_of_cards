@@ -21,10 +21,9 @@ class PlayingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform(
-      transform:
-          Matrix4.rotationX(Provider.of<DeckModel>(context).angle * pi / 180),
+      transform: Matrix4.rotationX(Provider.of<DeckModel>(context).angle),
       alignment: Alignment.center,
-      child: (Provider.of<DeckModel>(context).angle <= 90)
+      child: (Provider.of<DeckModel>(context).angle <= pi / 2)
           ? Card(
               child: InkWell(
                 splashColor: Colors.black87.withAlpha(30),

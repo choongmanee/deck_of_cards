@@ -21,7 +21,9 @@ class PlayingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform(
-      transform: Matrix4.rotationX(Provider.of<DeckModel>(context).angle),
+      transform: Matrix4.identity()
+        ..setEntry(3, 2, 0.0025)
+        ..rotateX(Provider.of<DeckModel>(context).angle),
       alignment: Alignment.center,
       child: (Provider.of<DeckModel>(context).angle <= pi / 2)
           ? Card(

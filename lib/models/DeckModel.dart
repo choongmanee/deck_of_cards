@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 class DeckModel extends ChangeNotifier {
   final _cards = [];
   final _discarded = [];
+  double _angle = 0.0;
   final Map<String, List<int>> _ranks = {
     'A': [0, 1],
     '2': [0, 2],
@@ -22,6 +23,8 @@ class DeckModel extends ChangeNotifier {
   final List<String> _suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
 
   get cards => _cards;
+
+  get angle => _angle;
 
   create() {
     _ranks.forEach((rank, body) {
@@ -56,6 +59,12 @@ class DeckModel extends ChangeNotifier {
       var removed = _discarded.removeAt(0);
       _cards.insert(0, removed);
     }
+    notifyListeners();
+  }
+
+  transform(value) {
+    _angle = value;
+
     notifyListeners();
   }
 }

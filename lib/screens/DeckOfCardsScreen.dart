@@ -32,6 +32,15 @@ class DeckOfCardsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Slider(
+                value: deck.angle,
+                onChanged: (v) {
+                  print(v);
+                  deck.transform(v);
+                },
+                min: 0.0,
+                max: 3.0,
+              ),
               if (deck.cards.length > 0)
                 FlatButton.icon(
                   onPressed: () => deck.shuffle(),

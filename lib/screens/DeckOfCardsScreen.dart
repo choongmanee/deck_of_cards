@@ -35,7 +35,6 @@ class DeckOfCardsScreen extends StatelessWidget {
               Slider(
                 value: deck.angle,
                 onChanged: (v) {
-                  print(v);
                   deck.transform(v);
                 },
                 min: 0.0,

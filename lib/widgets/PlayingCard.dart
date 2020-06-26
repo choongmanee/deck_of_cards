@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:deckofcards/models/DeckModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +21,10 @@ class PlayingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform(
-      transform: Matrix4.rotationX(Provider.of<DeckModel>(context).angle),
+      transform:
+          Matrix4.rotationX(Provider.of<DeckModel>(context).angle * pi / 180),
       alignment: Alignment.center,
-      child: (Provider.of<DeckModel>(context).angle < 1.6)
+      child: (Provider.of<DeckModel>(context).angle <= 90)
           ? Card(
               child: InkWell(
                 splashColor: Colors.black87.withAlpha(30),

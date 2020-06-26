@@ -38,7 +38,7 @@ class DeckOfCardsScreen extends StatelessWidget {
                   deck.transform(v);
                 },
                 min: 0.0,
-                max: 3.0,
+                max: 180.0,
               ),
               if (deck.cards.length > 0)
                 FlatButton.icon(

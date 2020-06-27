@@ -1,7 +1,9 @@
+import 'package:deckofcards/models/CardModel.dart';
 import 'package:flutter/foundation.dart';
 
 class DeckModel extends ChangeNotifier {
-  final _cards = [];
+  final Map<String, CardModel> _cards = {};
+  final List<String> _stack = [];
   final _discarded = [];
   double _angle = 0.0;
   final Map<String, List<int>> _ranks = {
@@ -20,44 +22,60 @@ class DeckModel extends ChangeNotifier {
     'K': [5, 8],
   };
 
-  final List<String> _suites = ['\u2660', '\u2663', '\u2666', '\u2665'];
+  final Map<String, String> _suites = {
+    's': '\u2660',
+    'c': '\u2663',
+    'd': '\u2666',
+    'h': '\u2665',
+  };
 
   get cards => _cards;
-
+  get stack => _stack;
   get angle => _angle;
 
   create() {
     _ranks.forEach((rank, body) {
-      _suites.forEach((suit) {
-        _cards.add({
-          'rank': rank,
-          'suit': suit,
-          'body': body,
-        });
+      _suites.forEach((suit, suitCode) {
+        _cards['$rank$suit'] = CardModel(
+          id: '$rank$suit',
+          rank: rank,
+          suitCode: suitCode,
+          sides: body.first,
+          center: body.last,
+          centerGap: ['7', '9'].contains(rank),
+        );
+
+        _stack.add('$rank$suit');
       });
     });
 
     notifyListeners();
   }
 
+  update(CardModel card) {
+    _cards[card.id] = card;
+
+    notifyListeners();
+  }
+
   shuffle() {
-    _cards.shuffle();
+    _stack.shuffle();
     notifyListeners();
   }
 
   draw() {
-    if (_cards.length > 0) {
-      var removed = _cards.removeAt(0); // TODO: make a class for a card
+    if (_stack.length > 0) {
+      var removed = _stack.removeAt(0);
       _discarded.add(removed);
     }
 
     notifyListeners();
   }
 
-  undraw() {
+  undo() {
     if (_discarded.length > 0) {
       var removed = _discarded.removeAt(0);
-      _cards.insert(0, removed);
+      _stack.insert(0, removed);
     }
     notifyListeners();
   }

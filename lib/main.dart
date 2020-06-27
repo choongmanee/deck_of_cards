@@ -1,7 +1,7 @@
+import 'package:deckofcards/models/DeckModel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'models/DeckModel.dart';
 import 'screens/DeckOfCardsScreen.dart';
 
 void main() {

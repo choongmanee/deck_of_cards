@@ -77,5 +77,4 @@ class DeckModel extends ChangeNotifier {
     }
     notifyListeners();
   }
-
 }

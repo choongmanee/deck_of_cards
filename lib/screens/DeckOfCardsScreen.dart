@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:deckofcards/models/CardModel.dart';
 import 'package:deckofcards/models/DeckModel.dart';
 import 'package:deckofcards/widgets/cardFlipper.dart';
@@ -16,14 +14,6 @@ class DeckOfCardsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Slider(
-                value: deck.angle,
-                onChanged: (v) {
-                  deck.transform(v);
-                },
-                min: 0.0,
-                max: pi,
-              ),
               if (deck.stack.length > 0)
                 FlatButton.icon(
                   onPressed: () => deck.shuffle(),

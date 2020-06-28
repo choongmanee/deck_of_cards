@@ -5,7 +5,6 @@ class DeckModel extends ChangeNotifier {
   final Map<String, CardModel> _cards = {};
   final List<String> _stack = [];
   final _discarded = [];
-  double _angle = 0.0;
   final Map<String, List<int>> _ranks = {
     'A': [0, 1],
     '2': [0, 2],
@@ -31,7 +30,6 @@ class DeckModel extends ChangeNotifier {
 
   get cards => _cards;
   get stack => _stack;
-  get angle => _angle;
 
   create() {
     _ranks.forEach((rank, body) {
@@ -80,9 +78,4 @@ class DeckModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  transform(value) {
-    _angle = value;
-
-    notifyListeners();
-  }
 }

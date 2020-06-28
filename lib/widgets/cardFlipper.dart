@@ -10,20 +10,19 @@ class CardFlipper extends StatefulWidget {
   CardFlipper(this.card);
 
   @override
-  _CardFlipperState createState() => _CardFlipperState(this.card);
+  _CardFlipperState createState() => _CardFlipperState();
 }
 
 class _CardFlipperState extends State<CardFlipper>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  final CardModel card;
 
-  _CardFlipperState(this.card);
+  _CardFlipperState();
 
   @override
   void initState() {
     _controller = AnimationController(
-      value: this.card.faceUp ? 1.0 : 0.0,
+      value: widget.card.faceUp ? 1.0 : 0.0,
       vsync: this,
       duration: Duration(seconds: 1, milliseconds: 250),
     );
@@ -41,7 +40,7 @@ class _CardFlipperState extends State<CardFlipper>
   }
 
   void flip() {
-    if (this.card.faceUp) {
+    if (widget.card.faceUp) {
       _controller.forward();
     } else {
       _controller.reverse();
@@ -51,7 +50,7 @@ class _CardFlipperState extends State<CardFlipper>
   @override
   Widget build(BuildContext context) {
     return PlayingCard(
-      card: this.card,
+      card: widget.card,
       radians: _controller.value * pi,
       flip: flip,
     );

@@ -23,13 +23,11 @@ class _CardFlipperState extends State<CardFlipper>
   @override
   void initState() {
     _controller = AnimationController(
-        vsync: this,
-        duration: Duration(seconds: 1),
-        upperBound: pi,
-        lowerBound: 0.0);
+      value: this.card.faceUp ? 1.0 : 0.0,
+      vsync: this,
+      duration: Duration(seconds: 1, milliseconds: 250),
+    );
     super.initState();
-
-    _controller.forward();
 
     _controller.addListener(() {
       setState(() {});
@@ -42,13 +40,20 @@ class _CardFlipperState extends State<CardFlipper>
     super.dispose();
   }
 
+  void flip() {
+    if (this.card.faceUp) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(_controller.value);
-
     return PlayingCard(
-      this.card,
-      pi,
+      card: this.card,
+      radians: _controller.value * pi,
+      flip: flip,
     );
   }
 }

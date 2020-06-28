@@ -10,8 +10,9 @@ import 'package:provider/provider.dart';
 class PlayingCard extends StatelessWidget {
   final CardModel card;
   final double radians;
+  final Function flip;
 
-  PlayingCard(this.card, this.radians);
+  PlayingCard({this.card, this.radians, this.flip});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class PlayingCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         this.card.flip();
+        this.flip();
 
         deck.update(this.card);
       },
@@ -29,7 +31,7 @@ class PlayingCard extends StatelessWidget {
             ..setEntry(3, 2, 0.0025)
             ..rotateX(this.radians),
           alignment: Alignment.center,
-          child: this.radians <= pi / 2 //TODO: fix this
+          child: this.radians < (pi / 2)
               ? Card(
                   child: InkWell(
                     splashColor: Colors.black87.withAlpha(30),

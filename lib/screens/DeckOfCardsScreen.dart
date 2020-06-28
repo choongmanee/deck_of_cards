@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:deckofcards/models/CardModel.dart';
 import 'package:deckofcards/models/DeckModel.dart';
-import 'package:deckofcards/widgets/PlayingCard.dart';
+import 'package:deckofcards/widgets/cardFlipper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +44,7 @@ class DeckOfCardsScreen extends StatelessWidget {
                               LimitedBox(
                                 maxHeight: 280.0,
                                 maxWidth: 200.0,
-                                child: PlayingCard(
+                                child: CardFlipper(
                                   card,
                                 ),
                               ),

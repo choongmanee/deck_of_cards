@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:deckofcards/models/CardModel.dart';
 import 'package:deckofcards/models/DeckModel.dart';
 import 'package:deckofcards/widgets/cardBody.dart';
@@ -7,8 +9,9 @@ import 'package:provider/provider.dart';
 
 class PlayingCard extends StatelessWidget {
   final CardModel card;
+  final double radians;
 
-  PlayingCard(this.card);
+  PlayingCard(this.card, this.radians);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +27,9 @@ class PlayingCard extends StatelessWidget {
         child: Transform(
           transform: Matrix4.identity()
             ..setEntry(3, 2, 0.0025)
-            ..rotateX(deck.angle),
+            ..rotateX(this.radians),
           alignment: Alignment.center,
-          child: this.card.faceUp
+          child: this.radians <= pi / 2 //TODO: fix this
               ? Card(
                   child: InkWell(
                     splashColor: Colors.black87.withAlpha(30),

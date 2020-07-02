@@ -22,25 +22,22 @@ class DeckOfCardsScreen extends StatelessWidget {
                 ),
               Center(
                 child: deck.stack.length > 0
-                    ? ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: deck.stack.length,
-                        itemBuilder: (context, index) {
-                          CardModel card = deck.cards[deck.stack[index]];
+                    ? Wrap(
+                        children: [
+                          ...deck.stack.map((cardID) {
+                            CardModel card = deck.cards[cardID];
 
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              LimitedBox(
+                            return ConstrainedBox(
+                              constraints: BoxConstraints(
                                 maxHeight: 280.0,
                                 maxWidth: 200.0,
-                                child: CardFlipper(
-                                  card,
-                                ),
                               ),
-                            ],
-                          );
-                        },
+                              child: CardFlipper(
+                                card,
+                              ),
+                            );
+                          }).toList(),
+                        ],
                       )
                     : FlatButton(
                         onPressed: () => deck.create(),

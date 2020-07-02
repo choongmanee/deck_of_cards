@@ -23,6 +23,8 @@ class DeckOfCardsScreen extends StatelessWidget {
               Center(
                 child: deck.stack.length > 0
                     ? Wrap(
+                        spacing: 32.0,
+                        runSpacing: 32.0,
                         children: [
                           ...deck.stack.map((cardID) {
                             CardModel card = deck.cards[cardID];

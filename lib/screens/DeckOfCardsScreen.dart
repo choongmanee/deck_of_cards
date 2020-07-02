@@ -1,4 +1,3 @@
-import 'package:deckofcards/models/CardModel.dart';
 import 'package:deckofcards/models/DeckModel.dart';
 import 'package:deckofcards/widgets/cardFlipper.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +25,7 @@ class DeckOfCardsScreen extends StatelessWidget {
                         spacing: 32.0,
                         runSpacing: 32.0,
                         children: [
-                          ...deck.stack.map((cardID) {
-                            CardModel card = deck.cards[cardID];
-
+                          ...deck.cardStack.map((card) {
                             return ConstrainedBox(
                               constraints: BoxConstraints(
                                 maxHeight: 280.0,

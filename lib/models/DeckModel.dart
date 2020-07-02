@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 class DeckModel extends ChangeNotifier {
   final Map<String, CardModel> _cards = {};
   final List<String> _stack = [];
+  final List<CardModel> _cardStack = [];
   final _discarded = [];
   final Map<String, List<int>> _ranks = {
     'A': [0, 1],
@@ -30,11 +31,12 @@ class DeckModel extends ChangeNotifier {
 
   get cards => _cards;
   get stack => _stack;
+  get cardStack => _cardStack;
 
   create() {
     _ranks.forEach((rank, body) {
       _suites.forEach((suit, suitCode) {
-        _cards['$rank$suit'] = CardModel(
+        CardModel card = CardModel(
           id: '$rank$suit',
           rank: rank,
           suitCode: suitCode,
@@ -43,21 +45,26 @@ class DeckModel extends ChangeNotifier {
           centerGap: ['7', '9'].contains(rank),
         );
 
+        _cards['$rank$suit'] = card;
         _stack.add('$rank$suit');
+        _cardStack.add(card);
       });
     });
 
     notifyListeners();
   }
 
-  update(CardModel card) {
-    _cards[card.id] = card;
+  update(CardModel newCard) {
+    final int index =
+        _cardStack.indexWhere((element) => element.id == newCard.id);
+    _cardStack[index] = newCard;
 
     notifyListeners();
   }
 
   shuffle() {
-    _stack.shuffle();
+    _cardStack.shuffle();
+
     notifyListeners();
   }
 
